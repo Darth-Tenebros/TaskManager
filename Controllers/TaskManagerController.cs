@@ -83,6 +83,7 @@ namespace TaskManager.Controllers
             {
                 _taskManagerDbContext.Users.Remove(user);
                 _taskManagerDbContext.SaveChanges();
+                return Ok(user);
             }
 
             return NotFound($"no user with id {id}");
@@ -158,5 +159,21 @@ namespace TaskManager.Controllers
 
             return NotFound($"No task with id {id}");
         }
+
+        [HttpDelete]
+        [Route("task/DeleteTask/{id:guid}")]
+        public IActionResult DeleteTask([FromRoute] Guid id)
+        {
+            var task = _taskManagerDbContext.Tasks.Find(id);
+            if (task != null)
+            {
+                _taskManagerDbContext.Tasks.Remove(task);
+                _taskManagerDbContext.SaveChanges();
+                return Ok(task);
+            }
+
+            return NotFound($"No task with id {id}");
+        }
+        
     }
 }
