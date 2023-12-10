@@ -16,6 +16,7 @@ namespace TaskManager.Controllers
             this._taskManagerDbContext = dbContext;
         }
 
+        #region UserControls
         [HttpGet]
         [Route("user/GetUsers")]
         public IActionResult GetUsers()
@@ -85,7 +86,9 @@ namespace TaskManager.Controllers
 
             return NotFound($"no user with id {id}");
         }
+        #endregion
 
+        #region TaskControls
         [HttpGet]
         [Route("task/GetTasks")]
         public IActionResult GetTasks()
@@ -171,6 +174,6 @@ namespace TaskManager.Controllers
 
             return NotFound($"No task with id {id}");
         }
-        
+        #endregion
     }
 }
