@@ -9,7 +9,7 @@ public class Task
     public DateTime DueDate { get; set; }
 }
 
-public class CreateNewTask
+public class TaskRequest
 {
     public string Title { get; set; }
     public string Description { get; set; }

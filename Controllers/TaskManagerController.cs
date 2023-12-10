@@ -123,7 +123,7 @@ namespace TaskManager.Controllers
 
         [HttpPost]
         [Route("task/AddTask")]
-        public IActionResult AddTask(CreateNewTask task)
+        public IActionResult AddTask(TaskRequest task)
         {
             var newTask = new Task()
             {
@@ -138,6 +138,25 @@ namespace TaskManager.Controllers
             _taskManagerDbContext.SaveChanges();
 
             return Ok(newTask);
+        }
+
+        [HttpPut]
+        [Route("task/UpdateTask/{id:guid}")]
+        public IActionResult UpdateTask([FromRoute] Guid id, TaskRequest taskRequest)
+        {
+            var task = _taskManagerDbContext.Tasks.Find(id);
+            if (task != null)
+            {
+                task.Title = taskRequest.Title;
+                task.Description = taskRequest.Description;
+                task.Assignee = taskRequest.Assignee;
+                task.DueDate = taskRequest.DueDate;
+
+                _taskManagerDbContext.SaveChanges();
+                return Ok(task);
+            }
+
+            return NotFound($"No task with id {id}");
         }
     }
 }
