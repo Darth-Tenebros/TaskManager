@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.DatabaseComms;
 using TaskManager.Models;
-using Task = TaskManager.Models.Task;
 
 namespace TaskManager.Controllers
 {
@@ -80,20 +79,8 @@ namespace TaskManager.Controllers
         [Route("task/GetTaskByUserId/{userId:guid}")]
         public IActionResult GetTaskByUserId([FromRoute] Guid userId)
         {
-            var tasks = _taskManagerDbContext.Tasks.ToList();
-            List<Task> userTasks = new List<Task>();
+            var userTasks = _taskManagerDbContext.Tasks.Where(task => task.Id == userId).ToList();
             
-            if (tasks.Count != 0)
-            {
-                foreach (var task in tasks)
-                {
-                    if (task.Assignee == userId)
-                    {
-                        userTasks.Add(task);
-                    }
-                }
-            }
-
             if (userTasks.Count != 0)
             {
                 return Ok(userTasks);
