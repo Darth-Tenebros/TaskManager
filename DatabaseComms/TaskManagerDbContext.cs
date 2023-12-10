@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TaskManager.Models;
-using Task = System.Threading.Tasks.Task;
+using Task = TaskManager.Models.Task;
 
 namespace TaskManager.DatabaseComms;
 

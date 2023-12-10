@@ -23,5 +23,17 @@ namespace TaskManager.Controllers
             return Ok(_taskManagerDbContext.Users.ToList());
         }
         
+        [HttpGet]
+        [Route("{id:guid}")]
+        public IActionResult GetUser([FromRoute] Guid id)
+        {
+            var user = _taskManagerDbContext.Users.Find(id);
+            if (user != null)
+            {
+                return Ok(user);
+            }
+
+            return NotFound($"user with id {id} not found");
+        }
     }
 }
