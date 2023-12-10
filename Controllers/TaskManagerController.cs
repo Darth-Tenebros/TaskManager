@@ -80,9 +80,8 @@ namespace TaskManager.Controllers
         [Route("task/GetTaskByUserId/{userId:guid}")]
         public IActionResult GetTaskByUserId([FromRoute] Guid userId)
         {
-            var userTasks = _taskManagerDbContext.Tasks.Where(task => task.Id.Equals(userId)).ToList();
-            
-            if (userTasks.Count != 0)
+            var userTasks = _taskManagerDbContext.Tasks.Where(task => task.Assignee == userId).ToList();
+            if (userTasks.Any())
             {
                 return Ok(userTasks);
             }
