@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.DatabaseComms;
+using TaskManager.Models;
 using Task = TaskManager.Models.Task;
 
 namespace TaskManager.Controllers
@@ -36,6 +37,23 @@ namespace TaskManager.Controllers
             }
 
             return NotFound($"user with id {id} not found");
+        }
+
+        [HttpPost]
+        [Route("user/AddUser")]
+        public IActionResult AddUser(CreatNewUser user)
+        {
+            var newUser = new User()
+            {
+                Id = Guid.NewGuid(),
+                Username = user.Username,
+                Email = user.Email,
+                Password = user.Password
+            };
+            _taskManagerDbContext.Users.Add(newUser);
+            _taskManagerDbContext.SaveChanges();
+
+            return Ok(newUser);
         }
 
         [HttpGet]
