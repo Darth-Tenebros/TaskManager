@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.DatabaseComms;
+using Task = TaskManager.Models.Task;
 
 namespace TaskManager.Controllers
 {
@@ -55,6 +56,32 @@ namespace TaskManager.Controllers
             }
 
             return NotFound($"task with id {id} not found");
+        }
+
+        [HttpGet]
+        [Route("task/GetTaskByUserId/{userId:guid}")]
+        public IActionResult GetTaskByUserId([FromRoute] Guid userId)
+        {
+            var tasks = _taskManagerDbContext.Tasks.ToList();
+            List<Task> userTasks = new List<Task>();
+            
+            if (tasks.Count != 0)
+            {
+                foreach (var task in tasks)
+                {
+                    if (task.Assignee == userId)
+                    {
+                        userTasks.Add(task);
+                    }
+                }
+            }
+
+            if (userTasks.Count != 0)
+            {
+                return Ok(userTasks);
+            }
+
+            return NotFound($"no tasks by user with id {userId}");
         }
     }
 }
