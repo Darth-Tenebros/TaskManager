@@ -11,7 +11,7 @@ public class User
     public string Password { get; set; }
 }
 
-public class CreatNewUser
+public class UserRequest
 {
     public string Username { get; set; }
     public string Email { get; set; }

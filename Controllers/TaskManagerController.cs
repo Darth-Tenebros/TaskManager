@@ -41,7 +41,7 @@ namespace TaskManager.Controllers
 
         [HttpPost]
         [Route("user/AddUser")]
-        public IActionResult AddUser(CreatNewUser user)
+        public IActionResult AddUser(UserRequest user)
         {
             var newUser = new User()
             {
@@ -54,6 +54,38 @@ namespace TaskManager.Controllers
             _taskManagerDbContext.SaveChanges();
 
             return Ok(newUser);
+        }
+
+        [HttpPut]
+        [Route("user/UpdateUser/{id:guid}")]
+        public IActionResult UpdateUser([FromRoute] Guid id, UserRequest userRequest)
+        {
+            var user = _taskManagerDbContext.Users.Find(id);
+            if (user != null)
+            {
+                user.Username = userRequest.Username;
+                user.Email = userRequest.Email;
+                user.Password = userRequest.Password;
+
+                _taskManagerDbContext.SaveChanges();
+                return Ok(user);
+            }
+
+            return NotFound($"No user with id {id}");
+        }
+
+        [HttpDelete]
+        [Route("user/delete{id:guid}")]
+        public IActionResult DeleteUser([FromRoute] Guid id)
+        {
+            var user = _taskManagerDbContext.Users.Find(id);
+            if (user != null)
+            {
+                _taskManagerDbContext.Users.Remove(user);
+                _taskManagerDbContext.SaveChanges();
+            }
+
+            return NotFound($"no user with id {id}");
         }
 
         [HttpGet]
