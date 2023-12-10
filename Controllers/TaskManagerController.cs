@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TaskManager.DatabaseComms;
 using TaskManager.Models;
+using Task = TaskManager.Models.Task;
 
 namespace TaskManager.Controllers
 {
@@ -79,7 +80,7 @@ namespace TaskManager.Controllers
         [Route("task/GetTaskByUserId/{userId:guid}")]
         public IActionResult GetTaskByUserId([FromRoute] Guid userId)
         {
-            var userTasks = _taskManagerDbContext.Tasks.Where(task => task.Id == userId).ToList();
+            var userTasks = _taskManagerDbContext.Tasks.Where(task => task.Id.Equals(userId)).ToList();
             
             if (userTasks.Count != 0)
             {
@@ -87,6 +88,25 @@ namespace TaskManager.Controllers
             }
 
             return NotFound($"no tasks by user with id {userId}");
+        }
+
+        [HttpPost]
+        [Route("task/AddTask")]
+        public IActionResult AddTask(CreateNewTask task)
+        {
+            var newTask = new Task()
+            {
+                Id = Guid.NewGuid(),
+                Assignee = task.Assignee,
+                Description = task.Description,
+                DueDate = task.DueDate,
+                Title = task.Title
+            };
+
+            _taskManagerDbContext.Tasks.Add(newTask);
+            _taskManagerDbContext.SaveChanges();
+
+            return Ok(newTask);
         }
     }
 }

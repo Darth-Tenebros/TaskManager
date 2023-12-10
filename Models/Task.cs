@@ -8,3 +8,11 @@ public class Task
     public Guid Assignee { get; set; }
     public DateTime DueDate { get; set; }
 }
+
+public class CreateNewTask
+{
+    public string Title { get; set; }
+    public string Description { get; set; }
+    public Guid Assignee { get; set; }
+    public DateTime DueDate { get; set; }
+}
