@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManager.DatabaseComms;
 
@@ -10,9 +11,10 @@ using TaskManager.DatabaseComms;
 namespace TaskManager.Migrations
 {
     [DbContext(typeof(TaskManagerDbContext))]
-    partial class TaskManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231211005513_rel")]
+    partial class rel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.25");
@@ -24,6 +26,9 @@ namespace TaskManager.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("Assignee")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("AssigneeUserId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
@@ -39,7 +44,7 @@ namespace TaskManager.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Assignee");
+                    b.HasIndex("AssigneeUserId");
 
                     b.ToTable("Tasks");
                 });
@@ -71,7 +76,7 @@ namespace TaskManager.Migrations
                 {
                     b.HasOne("TaskManager.Models.User", "AssigneeUser")
                         .WithMany("AssignedTasks")
-                        .HasForeignKey("Assignee")
+                        .HasForeignKey("AssigneeUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

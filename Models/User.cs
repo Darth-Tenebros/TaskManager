@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace TaskManager.Models;
 
 /**
@@ -9,6 +11,9 @@ public class User
     public string Username { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
+    
+    [InverseProperty("AssigneeUser")]
+    public List<Task> AssignedTasks { get; set; }
 }
 
 public class UserRequest
