@@ -13,7 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(
     c =>
     {
-        c.SwaggerDoc("v1", new OpenApiInfo()
+        c.SwaggerDoc("v1", new OpenApiInfo
         {
             Title = "TaskManager",
             Description = "Task Api",
@@ -30,14 +30,15 @@ builder.Services.AddSwaggerGen(
             },
             Version = "v1"
         });
-    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-    c.IncludeXmlComments(xmlPath);
-});
-    
+        var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+        var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+        c.IncludeXmlComments(xmlPath);
+    });
+
 
 // builder.Services.AddDbContext<TaskManagerDbContext>(options => options.UseInMemoryDatabase("TaskManagerStore"));
-builder.Services.AddDbContext<TaskManagerDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("TaskDBConn")));
+builder.Services.AddDbContext<TaskManagerDbContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("TaskDBConn")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

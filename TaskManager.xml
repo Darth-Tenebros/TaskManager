@@ -6,27 +6,27 @@
     <members>
         <member name="M:TaskManager.Controllers.TaskManagerController.GetUsers">
             <summary>
-            Retrieve all users in the database
+                Retrieve all users in the database
             </summary>
             <returns>A list with all users.</returns>
         </member>
         <member name="M:TaskManager.Controllers.TaskManagerController.GetUser(System.Guid)">
             <summary>
-            Retrieve a user by the Id
+                Retrieve a user by the Id
             </summary>
             <param name="id">The ID of the user.</param>
             <returns>A user object.</returns>
         </member>
         <member name="M:TaskManager.Controllers.TaskManagerController.AddUser(TaskManager.Models.UserRequest)">
             <summary>
-            Add a new user to the database
+                Add a new user to the database
             </summary>
             <param name="user">Object with the supplied user data</param>
             <returns>The new user.</returns>
         </member>
         <member name="M:TaskManager.Controllers.TaskManagerController.UpdateUser(System.Guid,TaskManager.Models.UserRequest)">
             <summary>
-            Update the user with the given guid
+                Update the user with the given guid
             </summary>
             <param name="id">The ID of the user.</param>
             <param name="userRequest">Object with the supplied user data</param>
@@ -34,41 +34,41 @@
         </member>
         <member name="M:TaskManager.Controllers.TaskManagerController.DeleteUser(System.Guid)">
             <summary>
-            Delete the user with the given id.
+                Delete the user with the given id.
             </summary>
             <param name="id">The ID of the user.</param>
             <returns>The deleted user.</returns>
         </member>
         <member name="M:TaskManager.Controllers.TaskManagerController.GetTasks">
             <summary>
-            Retrieve all tasks in the database
+                Retrieve all tasks in the database
             </summary>
             <returns>A list of tasks.</returns>
         </member>
         <member name="M:TaskManager.Controllers.TaskManagerController.GetTask(System.Guid)">
             <summary>
-            Retrieve the task with the given id
+                Retrieve the task with the given id
             </summary>
             <param name="id">The ID of the task.</param>
             <returns>A task object.</returns>
         </member>
         <member name="M:TaskManager.Controllers.TaskManagerController.GetTaskByUserId(System.Guid)">
             <summary>
-            Delete the task that is associated with the given user id
+                Delete the task that is associated with the given user id
             </summary>
             <param name="userId">The id of the user.</param>
             <returns>The deleted task.</returns>
         </member>
         <member name="M:TaskManager.Controllers.TaskManagerController.AddTask(TaskManager.Models.TaskRequest)">
             <summary>
-            Add a new task to the database.
+                Add a new task to the database.
             </summary>
             <param name="task">Object with the supplied data.</param>
             <returns>The new task.</returns>
         </member>
         <member name="M:TaskManager.Controllers.TaskManagerController.UpdateTask(System.Guid,TaskManager.Models.TaskRequest)">
             <summary>
-            Update the task with the given id.
+                Update the task with the given id.
             </summary>
             <param name="id">Object with the supplied data.</param>
             <param name="taskRequest">Object with the supplied task data.</param>
@@ -76,7 +76,7 @@
         </member>
         <member name="M:TaskManager.Controllers.TaskManagerController.DeleteTask(System.Guid)">
             <summary>
-            Delete the task with the given id.
+                Delete the task with the given id.
             </summary>
             <param name="id">The id of the task.</param>
             <returns>The deleted task.</returns>

@@ -7,11 +7,11 @@ public class Task
     public Guid Id { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
-    [ForeignKey("AssigneeUser")] 
-    public Guid Assignee { get; set; }
-    
-    [InverseProperty("AssignedTasks")]
-    public User AssigneeUser { get; set; }
+
+    [ForeignKey("AssigneeUser")] public Guid Assignee { get; set; }
+
+    [InverseProperty("AssignedTasks")] public User AssigneeUser { get; set; }
+
     public DateTime DueDate { get; set; }
 }
 
