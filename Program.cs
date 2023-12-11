@@ -10,8 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<TaskManagerDbContext>(options => options.UseInMemoryDatabase("TaskManagerStore"));
-
+// builder.Services.AddDbContext<TaskManagerDbContext>(options => options.UseInMemoryDatabase("TaskManagerStore"));
+builder.Services.AddDbContext<TaskManagerDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("TaskDBConn")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
