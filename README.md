@@ -11,4 +11,4 @@ find doocs at: `https://localhost:7013/swagger/index.html`
 ### Completed:
 - Part 1: API Development
 - Part 3: Database Interaction
-- Part 5: Swagger Documentation if C#
+- Part 5: Swagger Documentation in C#
