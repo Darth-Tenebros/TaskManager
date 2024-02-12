@@ -20,7 +20,7 @@ builder.Services.AddSwaggerGen(
             Contact = new OpenApiContact
             {
                 Name = "Yolisa",
-                Email = "yolisapingilili2@gmail.com",
+                Email = "",
                 Url = new Uri("https://github.com/Darth-Tenebros")
             },
             License = new OpenApiLicense
